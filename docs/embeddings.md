@@ -91,7 +91,7 @@ To use OpenAI embedding models, you need to either install `pydantic-ai`, or ins
 pip/uv-add "pydantic-ai-slim[openai]"
 ```
 
-To also use [`OpenAIEmbeddingModel.count_tokens()`][pydantic_ai.embeddings.openai.OpenAIEmbeddingModel.count_tokens], install the `openai-tokenizer` group instead, which additionally includes [`tiktoken`](https://pypi.org/project/tiktoken):
+To also use [`OpenAIEmbeddingModel.count_tokens()`][pydantic_ai.embeddings.openai.OpenAIEmbeddingModel.count_tokens], use the `openai-tokenizer` group (a superset of `openai` that additionally includes [`tiktoken`](https://pypi.org/project/tiktoken)):
 
 ```bash
 pip/uv-add "pydantic-ai-slim[openai-tokenizer]"
