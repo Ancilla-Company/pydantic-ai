@@ -13,7 +13,6 @@ from .result import EmbeddingResult
 from .settings import EmbeddingSettings
 
 try:
-    import tiktoken
     from openai import APIConnectionError, APIStatusError, AsyncOpenAI
     from openai.types import EmbeddingModel as LatestOpenAIEmbeddingModelNames
     from openai.types.create_embedding_response import Usage
@@ -159,6 +158,13 @@ class OpenAIEmbeddingModel(EmbeddingModel):
             raise UserError(
                 'Counting tokens is not supported for non-OpenAI embedding models',
             )
+        try:
+            import tiktoken
+        except ImportError as e:
+            raise ImportError(
+                'Please install `tiktoken` to count tokens with OpenAI embedding models, '
+                'you can use the `openai-tokenizer` optional group — `pip install "pydantic-ai-slim[openai-tokenizer]"`'
+            ) from e
         try:
             encoding = await _utils.run_in_executor(tiktoken.encoding_for_model, self.model_name)
         except KeyError as e:  # pragma: no cover

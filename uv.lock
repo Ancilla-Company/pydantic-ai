@@ -6619,7 +6619,7 @@ email = [
 name = "pydantic-ai"
 source = { editable = "." }
 dependencies = [
-    { name = "pydantic-ai-slim", extra = ["ag-ui", "anthropic", "bedrock", "cli", "cohere", "evals", "fastmcp", "google", "groq", "logfire", "mcp", "mistral", "openai", "retries", "spec", "temporal", "ui", "vertexai", "xai"] },
+    { name = "pydantic-ai-slim", extra = ["ag-ui", "anthropic", "bedrock", "cli", "cohere", "evals", "fastmcp", "google", "groq", "logfire", "mcp", "mistral", "openai-tokenizer", "retries", "spec", "temporal", "ui", "vertexai", "xai"] },
     { name = "pydantic-ai-slim", extra = ["huggingface"], marker = "extra == 'extra-16-pydantic-ai-slim-huggingface'" },
 ]
 
@@ -6882,6 +6882,9 @@ mistral = [
 ]
 openai = [
     { name = "openai" },
+]
+openai-tokenizer = [
+    { name = "openai" },
     { name = "tiktoken" },
 ]
 openrouter = [
@@ -7003,7 +7006,7 @@ requires-dist = [
     { name = "tavily-python", marker = "extra == 'tavily'", specifier = ">=0.5.0" },
     { name = "temporalio", marker = "extra == 'temporal'", specifier = ">=1.24.0" },
     { name = "tenacity", marker = "extra == 'retries'", specifier = ">=8.2.3" },
-    { name = "tiktoken", marker = "extra == 'openai'", specifier = ">=0.12.0" },
+    { name = "tiktoken", marker = "extra == 'openai-tokenizer'", specifier = ">=0.12.0" },
     { name = "torch", marker = "(python_full_version < '3.14' and platform_machine != 'x86_64' and extra == 'outlines-transformers') or (python_full_version < '3.14' and sys_platform != 'darwin' and extra == 'outlines-transformers')", specifier = ">=2.8.0" },
     { name = "torch", marker = "(python_full_version < '3.14' and platform_machine != 'x86_64' and extra == 'outlines-vllm-offline') or (python_full_version < '3.14' and sys_platform != 'darwin' and extra == 'outlines-vllm-offline')", specifier = ">=2.8.0" },
     { name = "transformers", marker = "python_full_version < '3.14' and extra == 'outlines-transformers'", specifier = ">=4.0.0" },

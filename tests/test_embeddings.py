@@ -167,6 +167,18 @@ class TestOpenAI:
         count = await embedder.count_tokens('Hello, world!')
         assert count == snapshot(4)
 
+    async def test_count_tokens_no_tiktoken(self, openai_api_key: str):
+        import sys
+
+        model = OpenAIEmbeddingModel('text-embedding-3-small', provider=OpenAIProvider(api_key=openai_api_key))
+        embedder = Embedder(model)
+        with patch.dict(sys.modules, {'tiktoken': None}):
+            with pytest.raises(
+                ImportError,
+                match='pip install "pydantic-ai-slim\\[openai-tokenizer\\]"',
+            ):
+                await embedder.count_tokens('Hello, world!')
+
     async def test_embed_error(self, openai_api_key: str):
         model = OpenAIEmbeddingModel('nonexistent', provider=OpenAIProvider(api_key=openai_api_key))
         embedder = Embedder(model)
